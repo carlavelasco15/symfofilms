@@ -19,7 +19,7 @@
       {% if pelicula.imagen %}
       <figcaption class="my-3 text-center">
         Borrar esta carátula
-        <a href="{{path('pelicula_delete_imagen', {'id':pelicula.id})}}">
+        <a href="{{ path('pelicula_imagen_delete', {'id':pelicula.id}) }}">
           <img src="{{asset('images/buttons/delete.png')}}" height="30" width="30"
             alt="Borrar carátula" title="Borrar carátula">
         </a>

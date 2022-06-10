@@ -6,5 +6,24 @@
 
     <p>Por favor, convirma la operación de borrado mediante el formulario.</p>
 
-  {{ form(formulario) }}
+  <div class="bg-light border row align-items-center justify-content-center my-3">
+    <div class="col-6">
+      {{ form(formulario) }}
+    </div>
+    <div class="col-6 text-center">
+      <figure class="my-2 p-2">
+        <img id="actual" class="rounded border movie-cover" style="max-width: 220px"
+          alt="Carátula de {{actor.nombre}}"
+          title="Carátula de {{actor.nombre}}"
+          src="{{asset(actor_directory~'/'~(actor.imagen ?? 'default.jpg'))}}">
+
+        {% if actor.imagen %}
+          <figcaption class="my-3 text-center">
+            Borrar esta imagen
+            <a href="{{path('actor_imagen_delete', {'id': actor.id})}}">
+              <img src="{{asset('images/buttons/delete.png')}}" height="30" width="30"
+                alt="Borrar carátula" title="Borrar carátula">
+            </a>
+          </figcaption>
+        {% endif %}
 {% endblock %}

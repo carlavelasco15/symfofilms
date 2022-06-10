@@ -40,7 +40,7 @@ class FileService {
             $file->move($this->targetDirectory, $fichero);
 
             if($anterior) {
-                $fileSystem = new Filsystem();
+                $fileSystem = new Filesystem();
                 $fileSystem->remove("$this->targetDirectory/$anterior");
             }
 
@@ -54,7 +54,7 @@ class FileService {
 
     public function delete(string $fileName) {
         $filesystem = new Filesystem;
-        $filesystem->remove("$targetDirectory/$fileName");
+        $filesystem->remove("$this->targetDirectory/$fileName");
     }
 
 

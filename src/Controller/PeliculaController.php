@@ -114,7 +114,7 @@ class PeliculaController extends AbstractController
 
 
      /**
-    * @Route("/pelicula/delete/imagen/{id<\d+>}", name="delete_imagen")
+    * @Route("/delete/imagen/{id<\d+>}", name="imagen_delete")
     */
     public function deleteImage(Pelicula $pelicula,
                                 Request $request,  

@@ -86,8 +86,9 @@ footer {
 	position: absolute;
 	right: -100px;
 	background: #fff;
-	box-shadow: 3px 2px 2px 1px grey;
+	box-shadow: 1px 1px 7px 1px grey;
 	visibility: hidden;
+	z-index: 10;
 }
 
 .nav-link:hover {

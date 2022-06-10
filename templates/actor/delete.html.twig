@@ -4,7 +4,20 @@
     {{ parent() }}
     <p>Eliminar la actor <b>{{ actor.nombre }}</b>.</p>
     <p>A lo largo de las próximas semanas iremos editando este ejemplo para dotarlo de nuevas características y funcionalidades.</p>
-
-    {{ form(formulario) }}
+    <div class="bg-light border row align-items-center justify-content-center my-3">
+    <div class="col-6 p-4">  
+        <p>Eliminar la película <b>{{ actor.nombre }}</b>.</p>
+        <p>A lo largo de las próximas semanas iremos editando este ejemplo para dotarlo de nuevas características y funcionalidades.</p>
+        {{ form(formulario) }}
+    </div>
+    <div class="col-6 text-center bg-light">
+        <figure class="p-2">
+        <img class="rounded border movie-cover" style="max-width: 220px"
+            alt="Carátula de {{actor.nombre}}"
+            title="Carátula de {{actor.nombre}}"
+            src="{{ asset(actor_directory~'/'~(actor.imagen ?? 'default.jpg'))}}">  
+        </figure>
+    </div>
+    </div>
 
 {% endblock %}

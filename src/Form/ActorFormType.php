@@ -28,7 +28,7 @@ class ActorFormType extends AbstractType
             ->add('biografia', TextareaType::class, [
                 'required' => false,
             ])
-            ->add('Imagen', FileType::class, [
+            ->add('imagen', FileType::class, [
                 'required' => false,
                 'data_class' => NULL,
                 'constraints' => [

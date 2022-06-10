@@ -22,7 +22,6 @@ class ActorDeleteFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
-            ->setMethod('DELETE')
             ->setDefaults([
                 'data_class' => Actor::class,
             ]);
