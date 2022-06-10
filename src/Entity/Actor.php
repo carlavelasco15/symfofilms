@@ -40,7 +40,7 @@ class Actor
     /**
      * @ORM\Column(type="string", length=128, nullable=true)
      */
-    private $n;
+    private $imagen;
 
     public function getId(): ?int
     {

@@ -36,18 +36,32 @@
                         <li class="nav-item mr-2"> 
                             <a class="nav-link" href="/">Inicio</a>
                         </li>
-                        <li class="nav-item mr-2"> 
+                        <li class="nav-item mr-2 drop-toggle"> 
                             <a class="nav-link" href="/peliculas">Películas</a>
+
+                            <ul class="nav drop-menu d-flex flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link"  href=" {{path('pelicula_list')}}">Lista de películas</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link"  href=" {{path('pelicula_create')}}">Nueva película</a>
+                                </li>
+                            </ul>
+                            
                         </li>
-                        <li class="nav-item mr-2"> 
-                            <a class="nav-link" href="/pelicula/create">Nueva película</a>
-                        </li>
-                        <li class="nav-item mr-2"> 
+
+                        <li class="nav-item mr-2 drop-toggle"> 
                             <a class="nav-link" href="/actores">Actores</a>
+                             <ul class="nav drop-menu d-flex flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link"  href=" {{path('actor_list')}}">Lista de actores</a>
+                                </li>
+                                <li class="nav-item mr-2"> 
+                                    <a class="nav-link" href=" {{path('actor_create')}}">Nuevo actor</a>
+                                </li>
+                            </ul>
                         </li>
-                        <li class="nav-item mr-2"> 
-                            <a class="nav-link" href="/actor/create">Nuevo actor</a>
-                        </li>
+
                     </ul>
                 </nav>
                 <div class="col-3 pt-2 text-end">
