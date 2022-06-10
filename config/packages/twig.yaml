@@ -1,6 +1,15 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
 
+    globals:
+        frase: '@App\Service\RandomQuoteService'
+        
+        pelicula_directory: '%app.pelicula_directory%'
+        actor_directory: '%app.actor_directory%'
+        
+    form_themes: ['bootstrap_5_layout.html.twig']
+
 when@test:
     twig:
-        strict_variables: true
+
+

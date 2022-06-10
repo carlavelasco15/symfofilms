@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block title %}Crear película{% endblock %}
+{% block main %}
+    {{ parent() }}
+    <p>Crear una nueva película en <b>SymfoFilms</b>.</p>
+
+    <p>A lo largo de las próximas semanas iremos editando este ejemplo para dotarlo de nuevas características y funcionalidades.</p>
+
+
+  {{ form(formulario) }}
+
+
+{% endblock %}

@@ -5,6 +5,21 @@
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
 
+    app.admin_email: '%env(ADMIN_EMAIL)%'
+    app.require_password: true
+    app.languages: ['en', 'es', 'ca']
+
+    app.portada_covers: 5
+
+    app.pelicula_directory: '%env(APP_PELICULA_DIRECTORY)%'
+    app.pelicula_directory.root: '%kernel.project_dir%/public/%app.pelicula_directory%'
+
+    app.actor_directory: '%env(APP_ACTOR_DIRECTORY)%'
+    app.actor_directory.root: '%kernel.project_dir%/public/%app.actor_directory%'
+
+    app.user_directory: '%env(APP_USER_DIRECTORY)%'
+    app.user_directory.root: '%kernel.project_dir%/'
+
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -22,3 +37,7 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Service\FileService:
+        arguments:
+            $targetDirectory: '%app.pelicula_directory.root%'

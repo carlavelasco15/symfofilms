@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+{% block title %}Detalles de {{ pelicula.titulo }}{% endblock %}
+{% block main %}
+    {{ parent() }}
+    <h2>{{ pelicula.titulo }}</h2>
+
+    <p>A lo largo de las próximas semanas iremos editando este ejemplo para dotarlo de nuevas características y funcionalidades.</p>
+
+    <div class="bg-light row border align-items-center justify-content-center my-3">
+        <div class="col m-3 p-3 text-start">
+            <h2 class="mb-3">Datos:</h2>
+            <p><b>ID</b>: {{ pelicula.id }}</p>
+            <p><b>Título</b>: {{ pelicula.titulo }}</p>
+            <p><b>Duración</b>: {{ pelicula.duracion }}</p>
+            <p><b>Director</b>: {{ pelicula.director }}</p>
+            <p><b>Género</b>: {{ pelicula.genero }}</p>
+        </div>
+        <div class="col m-3 p-3 text-center bg-ligth">
+            <img class="rounded img-fluid w-90 h-100 d-inline-block" style="max-width: 240px"
+                alt="Carátula de {{pelicula.titulo}}"
+                title="Carátula de {{pelicula.titulo}}"
+                src="{{ asset(pelicula_directory~'/'~(pelicula.imagen ?? 'default.jpg'))}}">
+        </div>
+    </div>
+
+    {% if pelicula.sinopsis %}
+        <div class="my-3 p-3">
+            <h2 class="mb-3">Sinopsis:</h2>
+            <p>{{ pelicula.sinopsis }}</p>
+        </div>
+    {% endif %}
+    
+    </div>
+        <div class="text-center">
+            <a href="{{ path('pelicula_list') }}">
+                <img height="40" width="40" src="{{ asset('images/buttons/list.png') }}"
+                    alt="Lista" title="Volver al listado">
+            </a>
+
+            <a href="{{ path('pelicula_edit', {'id': pelicula.id}) }}">
+                <img height="40" width="40" src="{{ asset('images/buttons/update.png') }}"
+                    alt="Modificar" title="Modificar">
+            </a>
+
+            <a href="{{ path('pelicula_delete', {'id': pelicula.id}) }}">
+                <img height="40" width="40" src="{{ asset('images/buttons/delete.png') }}"
+                    alt="Borrar" title="Borrar">
+            </a>
+        </div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+{% block title %}Editar película{% endblock %}
+{% block main %}
+    {{ parent() }}
+    <p>Editar la película <b>{{ pelicula.titulo }}</b>.</p>
+
+    <p>Por favor, confirma la operación de edición mediante el formulario.</p>
+<div class="bg-light border row align-items-center justify-content-center my-3">
+  <div class="col-6">
+  {{ form(formulario) }}
+</div>
+<div class="col-6 text-center">
+  <figure class="my-2 p-2">
+    <img id="actual" class="rounded border movie-cover" style="max-width: 220px"
+      alt="Carátula de {{pelicula.titulo}}"
+      title="Carátula de {{pelicula.titulo}}"
+      src="{{asset(pelicula_directory~'/'~(pelicula.imagen ?? 'default.jpg'))}}">
+
+      {% if pelicula.imagen %}
+      <figcaption class="my-3 text-center">
+        Borrar esta carátula
+        <a href="{{path('pelicula_delete_imagen', {'id':pelicula.id})}}">
+          <img src="{{asset('images/buttons/delete.png')}}" height="30" width="30"
+            alt="Borrar carátula" title="Borrar carátula">
+        </a>
+      </figcaption>
+      {% endif %}
+  </figure>   
+  <h4>Previsulaización</h4>
+  <figure class="my-2 p-2">
+    <img id="preview"
+      class="rounded border movie-cover"
+      style="max-width: 220px"
+      src="{{asset(pelicula_directory~'/'~(pelicula.imagen ?? 'default.jpg'))}} ">
+    <figcaption class="my-3 text-center">
+      Carátula tras aplicar los cambios
+    </figcaption>
+    <figure>
+    <script src="{{asset('/js/previewEdit.js')}}"></script>
+  </div>
+</div>
+{% endblock %}

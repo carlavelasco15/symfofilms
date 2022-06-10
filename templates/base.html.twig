@@ -1,19 +1,77 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+    <head lang="es">
+        {% block head %}
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
+            <title>{% block title %}{% endblock %} - Symfofilms</title>
+
+            <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+            <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('css/estilo.css') }}">
+            <link rel="shortcut icon" href="{{ asset('images/template/logo.png') }}" type="image/png">
         {% endblock %}
     </head>
-    <body>
-        {% block body %}{% endblock %}
+    
+    <body class="container p-3">
+        {% block header %}
+            <header class="row border bg-light">
+                <hgroup class="col-8 align-self-center">
+                    <h1>SymfoFilms</h1>
+                    <h2>Página de cine, ejemplo de clase.</h2>
+                    <p>{{frase.getQuote()}}</p>
+                </hgroup>
+                <figure class="col-4 text-end">
+                    <a href="/">
+                        <img class="h-auto" alt="Logo" src=" {{ asset('images/template/logo.png') }}">
+                    </a>
+                </figure>
+            </header>
+        {% endblock %}
+        {% block nav %}
+            <div class="container row">
+                <nav class="col-9">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item mr-2"> 
+                            <a class="nav-link" href="/">Inicio</a>
+                        </li>
+                        <li class="nav-item mr-2"> 
+                            <a class="nav-link" href="/peliculas">Películas</a>
+                        </li>
+                        <li class="nav-item mr-2"> 
+                            <a class="nav-link" href="/pelicula/create">Nueva película</a>
+                        </li>
+                        <li class="nav-item mr-2"> 
+                            <a class="nav-link" href="/actores">Actores</a>
+                        </li>
+                        <li class="nav-item mr-2"> 
+                            <a class="nav-link" href="/actor/create">Nuevo actor</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="col-3 pt-2 text-end">
+                    {{ "now"|date('d/m/Y H:i', timezone="Europe/Madrid") }}
+                </div>
+            </div>
+        {% endblock %}
+        <main class="my-3">
+        {% block main %}
+            {% block success %}
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endblock %}
+        {% endblock %}
+        </main>
+
+        {% block footer %}
+            <footer class="page-footer font-small bg-light border row">
+                <p class="m-1"> Aplicación creada por <b>Robert Sallent</b> como ejemplo de clase.
+                Desarrollada haciendo uso de <b>Symfony</b> y <b>Bootstrap</b>.</p>
+            </footer>
+        {% endblock %}
     </body>
 </html>

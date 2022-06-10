@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% block title %}Eliminar actor{% endblock %}
+{% block main %}
+    {{ parent() }}
+    <p>Eliminar la actor <b>{{ actor.nombre }}</b>.</p>
+    <p>A lo largo de las próximas semanas iremos editando este ejemplo para dotarlo de nuevas características y funcionalidades.</p>
+
+    {{ form(formulario) }}
+
+{% endblock %}

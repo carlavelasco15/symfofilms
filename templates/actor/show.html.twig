@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block title %}Detalles de {{ actor.nombre }}{% endblock %}
+{% block main %}
+    {{ parent() }}
+    <h2>{{ actor.nombre }}</h2>
+
+    <p>A lo largo de las próximas semanas iremos editando este ejemplo para dotarlo de nuevas características y funcionalidades.</p>
+
+   <div class="border my-3 p-3">
+        <h2 class="mb-3">Datos:</h2>
+        <p><b>ID</b>: {{ actor.id }}</p>
+        <p><b>Título</b>: {{ actor.nombre }}</p>
+        <p><b>Duración</b>: {{ actor.nacimiento|date('d-m-Y') }}</p>
+        <p><b>Director</b>: {{ actor.nacionalidad }}</p>
+    </div>
+    {% if actor.biografia %}
+        <div class="border my-3 p-3">
+            <h2 class="mb-3">Biografía:</h2>
+            <p>{{ actor.biografia }}</p>
+        </div>
+    {% endif %}
+    <div class="text-center">
+        <a href="{{ path('actor_list') }}">
+            <img height="40" width="40" src="{{ asset('images/buttons/list.png') }}"
+                alt="Lista" title="Volver al listado">
+        </a>
+
+        <a href="{{ path('actor_edit', {'id': actor.id}) }}">
+            <img height="40" width="40" src="{{ asset('images/buttons/update.png') }}"
+                alt="Modificar" title="Modificar">
+        </a>
+
+        <a href="{{ path('actor_delete', {'id': actor.id}) }}">
+            <img height="40" width="40" src="{{ asset('images/buttons/delete.png') }}"
+                alt="Borrar" title="Borrar">
+        </a>
+    </div>
+{% endblock %}
