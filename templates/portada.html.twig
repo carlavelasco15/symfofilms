@@ -12,7 +12,7 @@
                 <a href=" {{ path("pelicula_show", {'id': pelicula.id}) }}">
                     <img class="img-fluid rounded w-90 h-100 d-inline-block"  alt="Carátula de {{pelicula.titulo}}" 
                     title="Carátula de {{pelicula.titulo}}"
-                    src=" {{ asset(pelicula_directory~'/'~pelicula.imagen) }}">
+                    src=" {{ asset(pelicula_directory~'/'~pelicula.imagen ?? 'default.jpg' )}}">
                 </a>    
                 <figcaption>{{ pelicula.titulo }}</figcaption>
             </figure>

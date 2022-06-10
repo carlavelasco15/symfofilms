@@ -40,12 +40,15 @@ class PeliculaRepository extends ServiceEntityRepository
         }
     }
 
-    public function covers() {
+    public function covers($limit) {
        return $this->getEntityManager()->createQuery(
             "SELECT p
             FROM App\Entity\Pelicula p
-            ORDER BY p.id DESC"
+            WHERE p.imagen IS NOT NULL
+            ORDER BY p.id DESC
+            "
         )
+        ->setMaxResults($limit)
         ->getResult();
     }
 

@@ -9,7 +9,7 @@ parameters:
     app.require_password: true
     app.languages: ['en', 'es', 'ca']
 
-    app.portada_covers: 5
+    app.portada_covers: 3
 
     app.pelicula_directory: '%env(APP_PELICULA_DIRECTORY)%'
     app.pelicula_directory.root: '%kernel.project_dir%/public/%app.pelicula_directory%'

@@ -17,7 +17,7 @@ class DefaultController extends AbstractController
 
         $limit = $this->getParameter('app.portada_covers');
 
-        $peliculas = $peliRepo->covers();
+        $peliculas = $peliRepo->covers($this->getParameter('app.portada_covers'));
 
         return $this->render('portada.html.twig', [
             'peliculas' => $peliculas
