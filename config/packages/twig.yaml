@@ -6,6 +6,11 @@ twig:
         
         pelicula_directory: '%app.pelicula_directory%'
         actor_directory: '%app.actor_directory%'
+
+    paths:
+        '%kernel.project_dir%/public/css': styles
+
+        '%kernel.project_dir%/public/images': images
         
     form_themes: ['bootstrap_5_layout.html.twig']
 

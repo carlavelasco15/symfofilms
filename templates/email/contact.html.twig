@@ -1,0 +1,12 @@
+{% extends 'email.html.twig' %}
+{% block main %}
+<div class="m-3 p-3 bg-white">
+    <h4>Nuevo mensaje</h4>
+    <h5>{{ asunto }}</h5>
+
+    <p><b>De {{ nombre }} ({{ de }})</b></p>
+
+    <p>{{ mensaje|escape }}</p>
+
+</div>
+{% endblock %}

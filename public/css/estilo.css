@@ -86,7 +86,7 @@ footer {
 	position: absolute;
 	right: -100px;
 	background: #fff;
-	box-shadow: 1px 1px 7px 1px grey;
+	box-shadow: 3px 3px 5px rgba(60, 60, 60, 0.6);
 	visibility: hidden;
 	z-index: 10;
 }
