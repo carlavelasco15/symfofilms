@@ -20,6 +20,8 @@ parameters:
     app.user_directory: '%env(APP_USER_DIRECTORY)%'
     app.user_directory.root: '%kernel.project_dir%/'
 
+    app.page_results: 2
+
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -41,3 +43,8 @@ services:
     App\Service\FileService:
         arguments:
             $targetDirectory: '%app.pelicula_directory.root%'
+
+
+    App\Service\PaginatorService:
+        arguments:
+            $limit: '%app.page_results%'

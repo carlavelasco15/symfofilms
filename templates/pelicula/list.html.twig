@@ -8,4 +8,13 @@
 
     {% include '/includes/lista_pelicula.html.twig' %}
 
+    {% 
+        include '/includes/paginator.html.twig' with
+        {
+            'route': 'pelicula_list',
+            'entidades': 'peliculas'
+        }
+
+    %}
+
 {% endblock %}

@@ -13,6 +13,7 @@ use App\Form\PeliculaDeleteFormType;
 use App\Service\FileService;
 use Symfony\Component\Filesystem\Filesystem;
 use App\Service\SearchBarService;
+use App\Service\PaginatorService;
 use App\Form\SearchBarFormType;
 
 
@@ -25,14 +26,17 @@ class PeliculaController extends AbstractController
 {
 
     /**
-    * @Route("s", name="list", methods={"GET"})
+    * @Route("s/{pagina}", defaults={"pagina": 1}, name="list", methods={"GET"})
     */
-    public function list(PeliculaRepository $peliculaRepository): Response
+    public function list(int $pagina, PaginatorService $paginator, PeliculaRepository $peliculaRepository): Response
     {
-        $pelis = $peliculaRepository->findAll();
+        $paginator->setEntityType('App\Entity\Pelicula');
+
+        $pelis = $paginator->findAllEntities($pagina);
 
         return $this->render('pelicula/list.html.twig', [
             'peliculas' => $pelis,
+            'paginator' => $paginator
         ]);
     }
 

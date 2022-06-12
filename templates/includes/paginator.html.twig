@@ -1,0 +1,35 @@
+{% set paginaActual = paginator.getPaginaActual() %}
+{% set total = paginator.getTotal() %}
+{% set totalPaginas = paginator.getTotalPages() %}
+
+{% if totalPaginas > 1 %}
+<nav class="container row" aria-label="Paginación de resultados">
+
+    <p class="col-6">Página {{ paginaActual }} de {{ totalPaginas }},
+        hay <b>{{total}}</b> {{ entidades }} en total.
+    </p>
+
+    <ul class="col-6 pagination justify-content-end">
+        {% if paginaActual > 1%}
+            <li class="page-item">
+                <a class="page-link" href="{{ path(route,
+                 {pagina: paginaActual-1 < 1 ? 1 : paginaActual-1}) }}">atras</a>
+            </li>
+        {% endif %}
+        {% for i in 1..totalPaginas %}
+            <li class="page-item {{ i == paginaActual ? 'active': ''}}">
+                <a class="page-link" href="{{ path(route, {pagina:i}) }}">{{ i }}</a>
+            </li>
+        {% endfor %}
+
+        {% if paginaActual < totalPaginas %}
+            <li class="page-item">
+                <a class="page-link"
+                    href="{{ path(route, {pagina: paginaActual+1 <= totalPaginas ?
+                        paginaActual+1 :
+                        paginaActual})}}">siguiente</a>
+            </li>
+        {% endif %}
+    </ul>
+    </nav>
+{% endif %}
