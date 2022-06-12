@@ -12,6 +12,10 @@ use App\Form\PeliculaFormType;
 use App\Form\PeliculaDeleteFormType;
 use App\Service\FileService;
 use Symfony\Component\Filesystem\Filesystem;
+use App\Service\SearchBarService;
+use App\Form\SearchBarFormType;
+
+
 
 
 /**
@@ -31,6 +35,43 @@ class PeliculaController extends AbstractController
             'peliculas' => $pelis,
         ]);
     }
+
+
+     /**
+    * @Route("/search", name="search")
+    */
+    public function search(
+                        PeliculaRepository $peliculaRepository, 
+                        SearchBarService $busqueda,
+                        Request $request): Response
+    {
+        $formulario = $this->createForm(SearchBarFormType::class, $busqueda, [
+            'field_choices' => [
+                'Título' => 'titulo',
+                'Género' => 'genero',
+                'Sinopsis' => 'sinopsis'
+            ],
+            'order_choices' => [
+                'ID' => 'id',
+                'Título' => 'titulo',
+                'Director' => 'director',
+                'Género' => 'genero',
+            ]
+            ]);
+
+        $formulario->get('campo')->setData($busqueda->campo);
+        $formulario->get('orden')->setData($busqueda->orden);
+
+        $formulario->handleRequest($request);
+
+        $pelis = $busqueda->search('App\Entity\Pelicula');
+
+        return $this->render('pelicula/search.html.twig', [
+            'peliculas' => $pelis,
+            'formulario' => $formulario->createView()
+        ]);
+    }
+
 
     /**
     * @Route("/create", name="create", methods={"GET", "POST"})

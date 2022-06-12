@@ -11,6 +11,8 @@ use App\Repository\ActorRepository;
 use App\Entity\Actor;
 use App\Form\ActorFormType;
 use App\Form\ActorDeleteFormType;
+use App\Service\SearchBarService;
+use App\Form\SearchBarFormType;
 
 
 /**
@@ -29,6 +31,43 @@ class ActorController extends AbstractController
         ]);
     }
 
+    
+     /**
+    * @Route("/search", name="search")
+    */
+    public function search(
+        ActorRepository $peliculaRepository,
+        SearchBarService $busqueda,
+        Request $request): Response
+
+    {
+
+        $formulario = $this->createForm(SearchBarFormType::class, $busqueda, [
+            'field_choices' => [
+                'Nombre' => 'nombre',
+                'Nacionalidad' => 'nacionalidad',
+            ],
+            'order_choices' => [
+                'ID' => 'id',
+                'Nacimiento' => 'nacimiento',
+                'Nacionalidad' => 'nacionalidad',
+                'Nombre' => 'nombre'
+            ]
+            ]);
+
+
+        $formulario->get('campo')->setData($busqueda->campo);
+        $formulario->get('orden')->setData($busqueda->orden);
+
+        $formulario->handleRequest($request);
+
+        $actores = $busqueda->search('App\Entity\Actor');
+
+        return $this->render('actor/search.html.twig', [
+            'actores' => $actores,
+            'formulario' => $formulario->createView()
+        ]);
+    }
     
     /**
     * @Route("/create", name="create", methods={"GET", "POST"})

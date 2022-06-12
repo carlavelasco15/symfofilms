@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block title %}Busqueda de actores{% endblock %}
+
+{% block main %}
+    {{ parent() }}
+    <h2>Búsqueda de actores en <b>Symfofilms</b></h2>
+
+    <div class="bg-light border row align-items-center justify-content-center my-3 p-1">
+        {{ form_start(formulario) }}
+            <div class="row">
+                <div class="col">{{ form_row(formulario.valor) }}</div>
+                <div class="col">{{ form_row(formulario.campo) }}</div>
+                <div class="col">{{ form_row(formulario.orden) }}</div>
+                <div class="col">{{ form_row(formulario.sentido) }}</div>
+                <div class="col">{{ form_row(formulario.limite) }}</div>
+                <div class="col">{{ form_row(formulario.Buscar) }}</div>
+                {{ form_rest(formulario) }}
+            </div>    
+        {{ form_end(formulario) }}
+    </div>
+    
+    <h3>Resultados</h3>    
+
+    {% include 'includes/lista_actor.html.twig' %}
+
+    <div class="text-center">
+        <a href="{{ path('actor_list') }}">
+            <img height="40" width="40"
+            src="{{ asset('images/buttons/list.png') }}"
+            alt="lista"
+            title="Volver al listado de actores">
+        </a>
+    </div>
+
+{% endblock %}
